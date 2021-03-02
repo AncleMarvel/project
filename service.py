@@ -1,15 +1,13 @@
 import requests
-api = "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/"
 
 class Service:
-    def __init__(self, baseUrl, method):
-        self.baseUrl = baseUrl
-        self.method = method
+    api = "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/" 
 
-    def getResponse(self):
-        response = requests.get(self.baseUrl + self.method)
+    @staticmethod
+    def getResponse(method):
+        response = requests.get(Service.api + method)
         return response.json()
 
-service = Service(api, 'catalogData.json')
-json = service.getResponse()
+service = Service()
+json = service.getResponse("catalogData.json")
 print(json)
